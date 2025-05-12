@@ -7,60 +7,52 @@
   <meta property="og:image" content="https://raw.githubusercontent.com/Ronaldss/TutoriaisProfaManu/refs/heads/main/tb.png?token=GHSAT0AAAAAADBQQMPMQBU62BECCUNDQL4K2A6YRPA" />
   <meta property="og:url" content="https://tutoriais-profa-manu.vercel.app/" />
   <meta property="og:type" content="website" />
-
   <title>Estudando com Professora Manu</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
   <style>
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
     }
-
     body {
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
       background-color: #f9f9f9;
       font-family: 'Roboto', sans-serif;
       color: #333;
     }
-
     .wrapper {
       flex: 1;
-      display: flex;
-      flex-direction: column;
     }
-
     header {
-      background-color: #4B0082;
+      *background-color: #4B0082;    
+      background-color: #2A549F; 
       color: white;
       padding: 3rem 2rem;
       text-align: center;
-      border-bottom: 5px solid #330066;
+      *border-bottom: 5px solid #330066;
+      border-bottom: 5px solid #00244D;
     }
-
     header h1 {
       font-family: 'Open Sans', sans-serif;
       font-weight: 700;
       font-size: 2.5rem;
       margin: 0;
     }
-
     header p {
       font-family: 'Open Sans', sans-serif;
       font-weight: 400;
       font-size: 1.2rem;
       margin-top: 1rem;
     }
-
     .video-container {
       display: flex;
       justify-content: center;
       padding: 2rem;
     }
-
     .video-container iframe {
       width: 100%;
       max-width: 960px;
@@ -69,83 +61,76 @@
       border: none;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
-
-    .thumbnail-row {
+    .thumbnail-carousel-wrapper {
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin: 2rem 0;
+      padding: 1rem;
+      overflow: hidden;
     }
-
-    .thumbnail {
-      position: relative;
-      width: 300px;
-      height: 170px;
-      border-radius: 10px;
+    .carousel-btn {
+      background-color: #1959A1;
+      border: none;
+      color: white;
+      font-size: 2rem;
       cursor: pointer;
-      transition: transform 0.3s ease-in-out;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      transition: background-color 0.3s;
     }
-
-    .thumbnail:hover {
-      transform: scale(1.05);
+    .carousel-btn:hover {
+      background-color: #00244D;
     }
-
+    .thumbnail-carousel {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 1rem 0;
+      scrollbar-width: none;
+      max-width: 90vw;
+    }
+    .thumbnail-carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .thumbnail {
+      min-width: 300px;
+      height: 100px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
     .thumbnail img {
       width: 100%;
       height: 100%;
-      border-radius: 10px;
       object-fit: cover;
     }
-
-    .thumbnail .caption {
+    .caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       background-color: rgba(0, 0, 0, 0.6);
       color: white;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       padding: 0.5rem;
       text-align: center;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
     }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 2rem 1rem;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-
-      header p {
-        font-size: 1rem;
-      }
-
-      .video-container iframe {
-        height: 300px;
-      }
-
-      .thumbnail-row .thumbnail {
-        width: 100%;
-        height: 150px;
-      }
-    }
-
     footer {
-      background-color: #4B0082;
+      *background-color: #4B0082;
+      background-color: #2A549F;
       color: white;
       padding: 2rem 1rem;
       text-align: center;
-      border-top: 5px solid #330066;
+      *border-top: 5px solid #330066;
+      border-top: 5px solid #00244D;
     }
-
     .footer-content {
+      *max-width: 960px;
+      *margin: 0 auto;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -154,7 +139,6 @@
       max-width: 960px;
       margin: 0 auto;
     }
-
     .footer-logo {
       height: 60px;
       object-fit: contain;
@@ -166,19 +150,14 @@
       margin: 0;
       max-width: 600px;
     }
-
-    @media (max-width: 600px) {
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
+    @media (max-width: 768px) {
+      .carousel-btn {
+        font-size: 1.5rem;
+        padding: 0.3rem 0.7rem;
       }
-
-      .footer-logo {
-        height: 50px;
-      }
-
-      footer p {
-        font-size: 0.95rem;
+      .thumbnail {
+        min-width: 200px;
+        height: 120px;
       }
     }
   </style>
@@ -189,62 +168,56 @@
       <h1>Tutoriais da Professora Manu</h1>
       <p>Bem-vindo(a)! Clique em um vídeo para começar.</p>
     </header>
-
-    <div class="video-container" id="video-container">
-      <!-- O iframe principal será inserido aqui -->
-      <iframe id="main-video" src="https://www.youtube.com/embed/1BMr-iAh2G8?autoplay=1" allowfullscreen></iframe>
+    <div class="video-container">
+      <iframe id="main-video" src="https://www.youtube.com/embed/1BMr-iAh2G8" allowfullscreen></iframe>
     </div>
-
-    <div class="thumbnail-row">
-      <!-- Miniaturas com legendas -->
-      <div class="thumbnail" onclick="changeVideo('1BMr-iAh2G8')">
+    <div class="thumbnail-carousel-wrapper">
+      <button class="carousel-btn" onclick="scrollCarousel(-1)">&#10094;</button>
+      <div class="thumbnail-carousel" id="carousel">
+         <div class="thumbnail" onclick="changeVideo('1BMr-iAh2G8')">
         <img src="https://img.youtube.com/vi/1BMr-iAh2G8/hqdefault.jpg" alt="Vídeo 0">
         <div class="caption">Geopolítica</div>
-      </div> 
+      </div>
       <div class="thumbnail" onclick="changeVideo('kBu0RHXy88s')">
         <img src="https://img.youtube.com/vi/kBu0RHXy88s/hqdefault.jpg" alt="Vídeo 1">
-        <div class="caption">Simulado OBGP - Questões 10 à 12</div>
+        <div class="caption">Simulado OBGP 10-12</div>
       </div>
       <div class="thumbnail" onclick="changeVideo('2NOEi77_3EY')">
         <img src="https://img.youtube.com/vi/2NOEi77_3EY/hqdefault.jpg" alt="Vídeo 2">
-        <div class="caption">Simulado OBGP - Questões 13 à 16</div>
+        <div class="caption">Simulado OBGP 13-16</div>
       </div>
       <div class="thumbnail" onclick="changeVideo('1YdlfW6E1sA')">
         <img src="https://img.youtube.com/vi/1YdlfW6E1sA/hqdefault.jpg" alt="Vídeo 4">
-        <div class="caption">Simulado OBGP - Questões 17 à 21</div>
+        <div class="caption">Simulado OBGP 17-21</div>
       </div>
       <div class="thumbnail" onclick="changeVideo('NHaOriodp-U')">
         <img src="https://img.youtube.com/vi/NHaOriodp-U/hqdefault.jpg" alt="Vídeo 5">
-        <div class="caption">Simulado OBGP - Questões 22 à 25</div>
+        <div class="caption">Simulado OBGP 22-25</div>
       </div>
       <div class="thumbnail" onclick="changeVideo('kl1szllblHg')">
-        <img src="https://img.youtube.com/vi/kl1szllblHg/hqdefault.jpg" alt="Vídeo 5">
-        <div class="caption">Simulado OBGP - Questões 26 à 30</div>
+        <img src="https://img.youtube.com/vi/kl1szllblHg/hqdefault.jpg" alt="Vídeo 6">
+        <div class="caption">Simulado OBGP 26-30</div>
       </div>
-      <div class="thumbnail" onclick="changeVideo('RDvRwweBuac')">
-        <img src="https://img.youtube.com/vi/RDvRwweBuac/hqdefault.jpg" alt="Vídeo 3">
-        <div class="caption">Simulado OBGP - Sem cortes</div>
       </div>
+      <button class="carousel-btn" onclick="scrollCarousel(1)">&#10095;</button>
     </div>
   </div>
-
   <footer>
     <div class="footer-content">
       <img src="https://logodownload.org/wp-content/uploads/2016/10/sesi-logo-9.png" alt="Logo SESI" class="footer-logo">
       <p>Este site foi desenvolvido com fins educacionais para alunos do SESI. Todo o conteúdo é de apoio didático da Professora Manu.</p>
     </div>
   </footer>
-
   <script>
     function changeVideo(videoId) {
-      const videoContainer = document.getElementById('video-container');
-      videoContainer.innerHTML = '';
-
-      const newIframe = document.createElement('iframe');
-      newIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      const iframe = document.getElementById('main-video');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
       newIframe.allowFullscreen = true;
-
-      videoContainer.appendChild(newIframe);
+    }
+    function scrollCarousel(direction) {
+      const carousel = document.getElementById('carousel');
+      const scrollAmount = 520;
+      carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
   </script>
 </body>
